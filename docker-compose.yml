@@ -13,6 +13,7 @@ services:
       - ./home_dev:/home
     networks:
        - monnet
+    restart: always
 networks:
   monnet:
     driver: bridge
