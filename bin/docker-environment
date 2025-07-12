@@ -2,7 +2,9 @@
 
 [ "$DEBUG" = "true" ] && set -x
 ###Add user
-[ ! -z "${USER_HOME}" ] && useradd -m -d ${USER_HOME} -s /bin/bash -p $(openssl passwd -crypt 123qwe) dev
+USER_HOME="/home/dev"
+
+[ ! -z "${USER_HOME}" ] && useradd -m -d ${USER_HOME} -s /bin/bash -p $(openssl passwd 123qwe) dev
 usermod -a -G www-data dev
 
 #change directory owner
@@ -30,10 +32,7 @@ sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 #JQ
 sudo apt install jq -y
 
-#Replace this file
-cp -f /usr/local/bin/docker-environment.after_first_run /usr/local/bin/docker-environment
 
 #Start SSH service
-/etc/init.d/ssh start
-
-exec "$@"
+#/etc/init.d/ssh start
+#exec "$@"
